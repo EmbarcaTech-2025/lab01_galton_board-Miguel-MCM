@@ -8,6 +8,8 @@ uint ball_total = 0;
 uint16_t ball_accumulator_max = 0;
 
 void ball_render(Ball *b) {
+    if (b->state == Stt_NONE)
+        return;
     ssd1306_set_pixel(ssd, b->x*BALL_POS_INCREMENT+BALL_ABSOLUTE_X_OFFSET, b->y*BALL_POS_INCREMENT, true);
 }
 
@@ -42,11 +44,6 @@ void ball_update(Ball *b) {
 }
 
 void ball_reset(Ball *b) {
-    for (int i=0; i<BALL_SLOTS_NUM; ++i) {
-            printf("%u ", ball_accumulator[i]);
-        }
-    printf("\n");
-    printf("%u, %u\n", b->x, b->y);
     b->x = BALL_INITIAL_X;
     b->y = BALL_INITIAL_Y;
     b->state = Stt_FALL;

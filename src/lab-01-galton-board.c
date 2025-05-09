@@ -20,21 +20,43 @@ struct render_area frame_area;
 
 void setup_ssd1306();
 
-int main()
-{
+void loop(Ball *balls);
+
+#define NUMBER_BALLS 8
+#define DELAY 500 // us
+#define NEW_BALL_TICKS ((BALL_END_Y*2)/NUMBER_BALLS)
+
+int main() {
     stdio_init_all();
     setup_ssd1306();
 
-    Ball ball;
-    ball_reset(&ball);
-    while (true) {
-        ssd1306_clear(ssd);
-        ball_render(&ball);
-        ball_update(&ball);
-        histogram_render();
-        render_on_display(ssd, &frame_area);
-        sleep_us(500);
+    Ball balls[NUMBER_BALLS];
+    for (int i=0; i<NUMBER_BALLS; i++) {
+        balls[i].state = Stt_NONE;
     }
+
+    for (uint tick=0; tick<NUMBER_BALLS*NEW_BALL_TICKS; tick++) {
+        if (!(tick%NEW_BALL_TICKS)) {
+            printf("%u, %u", tick, tick/NEW_BALL_TICKS);
+            ball_reset(&(balls[tick/NEW_BALL_TICKS]));
+        }
+        loop(balls);
+    }
+
+    while (true) {
+        loop(balls);
+    }
+}
+
+void loop(Ball *balls) {
+    ssd1306_clear(ssd);
+    for (int i=0; i<NUMBER_BALLS; i++) {
+        ball_render(&(balls[i]));
+        ball_update(&(balls[i]));
+    }
+    histogram_render();
+    render_on_display(ssd, &frame_area);
+    sleep_us(DELAY);
 }
 
 void setup_ssd1306() {
