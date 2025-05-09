@@ -37,6 +37,7 @@ pico_sdk_init()
 
 add_executable(lab-01-galton-board
   ./src/lab-01-galton-board.c 
+  ./src/ball.c
   ./include/ssd1306_i2c.c
 )
 
@@ -49,7 +50,9 @@ pico_enable_stdio_usb(lab-01-galton-board 1)
 
 # Add the standard library to the build
 target_link_libraries(lab-01-galton-board
-        pico_stdlib)
+        pico_stdlib
+        pico_rand
+        )
 
 # Add the standard include files to the build
 target_include_directories(lab-01-galton-board PRIVATE

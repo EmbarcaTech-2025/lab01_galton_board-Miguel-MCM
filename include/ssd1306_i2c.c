@@ -243,3 +243,9 @@ void ssd1306_draw_bitmap(ssd1306_t *ssd, const uint8_t *bitmap) {
         ssd1306_send_data(ssd);
     }
 }
+
+void ssd1306_clear(uint8_t *ssd) {
+    for (int i = 0; i < ssd1306_buffer_length - 1; i++) {
+        ssd[i + 1] = 0;
+    }
+  }
