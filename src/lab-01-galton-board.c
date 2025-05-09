@@ -55,6 +55,7 @@ void loop(Ball *balls) {
         ball_update(&(balls[i]));
     }
     histogram_render();
+    sdd1306_draw_uint(ssd, ball_total, ssd1306_width-8, 0, 3);
     render_on_display(ssd, &frame_area);
     sleep_us(DELAY);
 }

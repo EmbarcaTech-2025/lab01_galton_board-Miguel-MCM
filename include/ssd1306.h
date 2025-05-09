@@ -16,3 +16,4 @@ extern void ssd1306_init_bm(ssd1306_t *ssd, uint8_t width, uint8_t height, bool 
 extern void ssd1306_send_data(ssd1306_t *ssd);
 extern void ssd1306_draw_bitmap(ssd1306_t *ssd, const uint8_t *bitmap);
 extern void ssd1306_clear(uint8_t *ssd);
+extern void sdd1306_draw_uint(uint8_t *ssd, uint16_t n, int16_t x, int16_t y, int8_t zero_fill);

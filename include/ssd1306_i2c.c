@@ -249,3 +249,11 @@ void ssd1306_clear(uint8_t *ssd) {
         ssd[i + 1] = 0;
     }
   }
+
+void sdd1306_draw_uint(uint8_t *ssd, uint16_t n, int16_t x, int16_t y, int8_t zero_fill) {
+    while ((zero_fill > 0) ? zero_fill-- : n) {
+        ssd1306_draw_char(ssd, x, y,'0' + (n%10));
+        x -= 8;
+        n /= 10;
+    }
+}
