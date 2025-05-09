@@ -35,9 +35,9 @@ int main() {
         balls[i].state = Stt_NONE;
     }
 
+    // initilize each ball after the correct number of ticks
     for (uint tick=0; tick<NUMBER_BALLS*NEW_BALL_TICKS; tick++) {
         if (!(tick%NEW_BALL_TICKS)) {
-            printf("%u, %u", tick, tick/NEW_BALL_TICKS);
             ball_reset(&(balls[tick/NEW_BALL_TICKS]));
         }
         loop(balls);

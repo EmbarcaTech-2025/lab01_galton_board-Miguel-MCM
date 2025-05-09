@@ -12,6 +12,7 @@
 
 #define BALL_INITIAL_X (BALL_SLOTS_NUM)
 
+// boosts chances of ball going right to 75%
 #define FAVOR_RIGHT 1
 
 typedef enum BallState {
