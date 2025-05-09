@@ -1,12 +1,14 @@
+#ifndef BALL_H
+#define BALL_H
 #include "ssd1306.h"
 
-#define BALL_POS_INCREMENT 2
+#define BALL_POS_INCREMENT 1
 
 #define BALL_INITIAL_Y 0
-#define BALL_END_Y (ssd1306_height/2)
+#define BALL_END_Y (32)
 #define BALL_SLOTS_NUM (BALL_END_Y)
 
-#define BALL_ABSOLUTE_X_OFFSET (ssd1306_width/2-BALL_SLOTS_NUM*2)
+#define BALL_ABSOLUTE_X_OFFSET (ssd1306_width/2-BALL_SLOTS_NUM*BALL_POS_INCREMENT)
 
 #define BALL_INITIAL_X (BALL_SLOTS_NUM)
 
@@ -33,3 +35,7 @@ bool random_decision();
 extern uint8_t ssd[ssd1306_buffer_length];
 
 extern uint16_t ball_accumulator[BALL_SLOTS_NUM];
+extern uint ball_total;
+extern uint16_t ball_accumulator_max;
+
+#endif

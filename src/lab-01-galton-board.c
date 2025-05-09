@@ -6,6 +6,7 @@
 #include "include/ssd1306.h"
 
 #include "ball.h"
+#include "histogram.h"
 
 // Definições para uso de comunicação I2C com os pinos do display OLED.
 #define I2C_PORT i2c1
@@ -30,8 +31,9 @@ int main()
         ssd1306_clear(ssd);
         ball_render(&ball);
         ball_update(&ball);
+        histogram_render();
         render_on_display(ssd, &frame_area);
-        sleep_ms(5);
+        sleep_us(500);
     }
 }
 

@@ -38,6 +38,7 @@ pico_sdk_init()
 add_executable(lab-01-galton-board
   ./src/lab-01-galton-board.c 
   ./src/ball.c
+  ./src/histogram.c
   ./include/ssd1306_i2c.c
 )
 

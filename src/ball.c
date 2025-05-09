@@ -4,6 +4,8 @@
 
 
 uint16_t ball_accumulator[BALL_SLOTS_NUM] = {0};
+uint ball_total = 0;
+uint16_t ball_accumulator_max = 0;
 
 void ball_render(Ball *b) {
     ssd1306_set_pixel(ssd, b->x*BALL_POS_INCREMENT+BALL_ABSOLUTE_X_OFFSET, b->y*BALL_POS_INCREMENT, true);
@@ -29,6 +31,9 @@ void ball_update(Ball *b) {
         break;
     case Stt_END:
         ball_accumulator[b->x/2]++;
+        if (ball_accumulator_max < ball_accumulator[b->x/2])
+            ball_accumulator_max = ball_accumulator[b->x/2];
+        ball_total++;
         ball_reset(b);
         break;
     default:
