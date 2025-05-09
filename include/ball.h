@@ -12,6 +12,8 @@
 
 #define BALL_INITIAL_X (BALL_SLOTS_NUM)
 
+#define FAVOR_RIGHT 1
+
 typedef enum BallState {
     Stt_FALL,
     Stt_COLLISION,

@@ -58,5 +58,11 @@ bool random_decision() {
         mask = 0;
     }
 
+    #ifndef FAVOR_RIGHT
     return (random_number & (1 << mask++)) != 0;
+    #else
+    bool descision = (random_number & (3 << mask)) != 0;
+    mask += 2;
+    return descision;
+    #endif
 }
